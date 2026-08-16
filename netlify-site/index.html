@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kakogames.id — Nostalgia dalam genggamanmu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#5B3DF5;
+    --purple-dark:#4527D6;
+    --orange:#F5A623;
+    --orange-dark:#E8940D;
+    --cream:#FBF4E7;
+    --ink:#1B1330;
+    --ink-soft:#5c5470;
+    --line:#e7e0f5;
+    --navy:#150F2E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    color:var(--ink);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
+
+  /* HEADER */
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:#fff;
+    position:sticky;top:0;z-index:50;
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;}
+  .logo-mark{
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(135deg,var(--orange),var(--purple));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono';font-weight:700;color:#fff;font-size:11px;
+  }
+  .logo span.accent{color:var(--purple);}
+  nav{display:flex;gap:36px;font-weight:600;font-size:15px;color:var(--ink);}
+  nav a{opacity:.85;transition:opacity .2s;}
+  nav a:hover{opacity:1;color:var(--purple);}
+  .btn-masuk{
+    border:1.5px solid var(--ink);border-radius:10px;padding:10px 22px;
+    font-weight:700;font-size:14px;
+  }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg,var(--cream) 0%, #fdfaf3 60%, #ffffff 100%);
+    padding:70px 32px 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono';font-size:12px;font-weight:600;letter-spacing:.08em;
+    color:var(--purple-dark);background:#EFEAFE;border:1px solid #ded4fb;
+    padding:6px 14px;border-radius:100px;margin-bottom:22px;
+  }
+  h1.hero-title{
+    font-size:56px;line-height:1.06;font-weight:800;letter-spacing:-0.02em;
+    margin-bottom:22px;
+  }
+  h1.hero-title .accent{color:var(--purple);position:relative;}
+  h1.hero-title .dot{color:var(--orange);}
+  .hero-desc{
+    font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:440px;margin-bottom:32px;
+  }
+  .hero-cta{display:flex;gap:14px;margin-bottom:44px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:15px 26px;border-radius:12px;font-weight:700;font-size:15px;
+    border:2px solid var(--ink);cursor:pointer;transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--orange);color:var(--ink);box-shadow:4px 4px 0 var(--ink);}
+  .btn-secondary{background:#fff;color:var(--ink);box-shadow:4px 4px 0 var(--ink);}
+  .hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+  .stat-num{font-size:22px;font-weight:800;color:var(--purple-dark);}
+  .stat-label{font-size:13px;color:var(--ink-soft);font-weight:600;}
+
+  .hero-art{
+    position:relative;border-radius:24px;overflow:hidden;
+    box-shadow:8px 8px 0 var(--purple);
+    border:3px solid var(--ink);
+  }
+  .hero-art img{width:100%;display:block;aspect-ratio:1/0.85;object-fit:cover;}
+
+  /* PRODUCTS */
+  .section{padding:88px 32px;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:16px;
+  }
+  .section-title{font-size:34px;font-weight:800;letter-spacing:-0.01em;margin-bottom:8px;}
+  .section-desc{color:var(--ink-soft);font-size:15px;}
+  .see-all{
+    font-family:'JetBrains Mono';font-size:13px;font-weight:700;color:var(--purple-dark);
+    letter-spacing:.04em;
+  }
+  .see-all::after{content:' →';}
+
+  .product-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;
+  }
+  .product-card{
+    border:1.5px solid var(--line);border-radius:18px;overflow:hidden;
+    transition:box-shadow .2s ease, transform .2s ease;
+    background:#fff;
+  }
+  .product-card:hover{box-shadow:6px 6px 0 var(--ink);transform:translateY(-3px);}
+  .product-media{position:relative;aspect-ratio:1/0.95;overflow:hidden;background:#f3efe4;}
+  .product-media img{width:100%;height:100%;object-fit:cover;}
+  .badge{
+    position:absolute;top:12px;right:12px;background:var(--ink);color:#fff;
+    font-family:'JetBrains Mono';font-size:11px;font-weight:600;padding:5px 11px;border-radius:100px;
+  }
+  .product-body{padding:18px 20px 20px;}
+  .product-name{font-size:17px;font-weight:700;margin-bottom:8px;}
+  .price-row{display:flex;justify-content:space-between;align-items:flex-end;}
+  .price-old{font-size:13px;color:#a39fb0;text-decoration:line-through;display:block;}
+  .price-new{font-size:18px;font-weight:800;color:var(--ink);}
+  .btn-beli{
+    background:var(--orange);border:2px solid var(--ink);border-radius:9px;
+    padding:9px 20px;font-weight:700;font-size:14px;box-shadow:3px 3px 0 var(--ink);
+  }
+
+  /* CONTENT / IG SECTION */
+  .content-section{background:var(--orange);position:relative;}
+  .content-section .eyebrow{background:rgba(0,0,0,.08);color:var(--ink);border-color:rgba(0,0,0,.15);}
+  .content-section .section-title, .content-section .section-desc{color:var(--ink);}
+  .content-section .see-all{color:var(--ink);}
+  .ig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;}
+  .ig-card{
+    border-radius:18px;overflow:hidden;border:2px solid var(--ink);
+    background:var(--navy);color:#fff;position:relative;aspect-ratio:4/5;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .ig-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.9;}
+  .ig-overlay{
+    position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:18px;background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(10,6,26,.92) 100%);
+  }
+  .ig-year{font-family:'JetBrains Mono';font-size:12px;color:var(--orange);font-weight:700;margin-bottom:6px;}
+  .ig-title{font-size:17px;font-weight:800;margin-bottom:8px;}
+  .ig-desc{font-size:13px;color:#cfc9e0;line-height:1.5;margin-bottom:12px;}
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .tag{font-family:'JetBrains Mono';font-size:11px;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:100px;}
+  .ig-meta{font-size:12px;color:#a8a0c2;font-weight:600;}
+
+  /* REVIEWS */
+  .review-empty{
+    border:1.5px dashed var(--line);border-radius:16px;padding:48px;text-align:center;color:var(--ink-soft);
+    font-size:15px;
+  }
+  .loading-text{color:var(--ink-soft);font-size:14px;grid-column:1/-1;}
+  .review-card{
+    border:1.5px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px;
+  }
+  .review-card:last-child{margin-bottom:0;}
+  .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;}
+  .review-name{font-weight:700;font-size:15px;}
+  .review-stars{color:var(--orange);font-size:14px;letter-spacing:1px;}
+  .review-product{
+    font-family:'JetBrains Mono';font-size:11px;color:var(--purple-dark);background:#EFEAFE;
+    padding:3px 10px;border-radius:100px;
+  }
+  .review-text{color:var(--ink-soft);font-size:14px;line-height:1.6;}
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+    color:#fff;text-align:center;padding:90px 32px;
+  }
+  .cta-section .eyebrow{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25);}
+  .cta-title{font-size:36px;font-weight:800;margin-bottom:14px;letter-spacing:-0.01em;}
+  .cta-desc{font-size:16px;color:#d9d2f7;max-width:520px;margin:0 auto 34px;line-height:1.6;}
+  .btn-wa{
+    background:var(--orange);color:var(--ink);border:2px solid var(--ink);
+    padding:16px 32px;border-radius:12px;font-weight:800;font-size:15px;
+    box-shadow:4px 4px 0 rgba(0,0,0,.4);display:inline-block;
+  }
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#cfc9e0;padding:64px 32px 32px;}
+  .footer-grid{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;padding-bottom:44px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .footer-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:#fff;margin-bottom:16px;}
+  .footer-desc{font-size:14px;line-height:1.7;max-width:320px;margin-bottom:20px;}
+  .ship-row{display:flex;gap:10px;align-items:center;}
+  .ship-label{font-family:'JetBrains Mono';font-size:11px;color:#847bb0;letter-spacing:.06em;}
+  .ship-tag{background:rgba(255,255,255,.08);padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;color:#fff;}
+  .footer-col h4{
+    font-family:'JetBrains Mono';font-size:12px;color:var(--orange);letter-spacing:.08em;margin-bottom:18px;
+  }
+  .footer-col a{display:block;font-size:14px;margin-bottom:12px;color:#cfc9e0;transition:color .2s;}
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;padding-top:24px;font-size:13px;color:#847bb0;flex-wrap:wrap;gap:10px;
+  }
+
+  .wa-float{
+    position:fixed;bottom:26px;right:26px;background:#22c35e;color:#fff;
+    padding:14px 22px;border-radius:100px;font-weight:700;font-size:14px;
+    display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.25);
+    z-index:60;
+  }
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    h1.hero-title{font-size:38px;}
+    nav{display:none;}
+    .footer-grid{grid-template-columns:1fr;gap:36px;}
+    .section-title{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">KG</div>
+    kako<span class="accent">games</span>
+  </div>
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#produk">Produk</a>
+    <a href="#review">Review</a>
+    <a href="#konten">Konten Terbaru</a>
+  </nav>
+  <a href="#" class="btn-masuk">MASUK</a>
+</header>
+
+<section class="hero" id="beranda">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">KAKOGAMES.ID · EST. 2025</div>
+      <h1 class="hero-title">Nostalgia dalam <span class="accent">genggamanmu</span><span class="dot">.</span></h1>
+      <p class="hero-desc">Beragam handheld untuk main game retro. Ribuan game klasik, satu perangkat, siap main hari ini.</p>
+      <div class="hero-cta">
+        <a href="#produk" class="btn btn-primary">Lihat Katalog</a>
+        <a href="#review" class="btn btn-secondary">Baca Review</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Pelanggan puas</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Garansi Resmi</div>
+        </div>
+        <div>
+          <div class="stat-num">JNE/J&amp;T</div>
+          <div class="stat-label">Kirim seluruh ID</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="https://images.unsplash.com/photo-1606318801954-d46d46d3360a?auto=format&fit=crop&w=900&q=80" alt="Koleksi handheld retro RG Rotate">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="produk">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Produk Unggulan</div>
+        <div class="section-desc">Pilihan tim Kakogames untuk kamu.</div>
+      </div>
+      <a href="#" class="see-all">LIHAT SEMUA</a>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <p class="loading-text">Memuat produk...</p>
+    </div>
+  </div>
+</section>
+
+<section class="section content-section" id="konten">
+  <div class="wrap">
+    <div class="eyebrow">@KAKOGAMES.ID</div>
+    <div class="section-head">
+      <div>
+        <div class="section-title">Konten Terbaru</div>
+        <div class="section-desc">Gameplay, review, dan panduan dari Instagram.</div>
+      </div>
+      <a href="#" class="see-all">LIHAT SEMUA KONTEN</a>
+    </div>
+    <div class="ig-grid" id="igGrid">
+      <p class="loading-text">Memuat konten...</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="review">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Review Terbaru</div>
+        <div class="section-desc">Ulasan mendalam sebelum kamu beli.</div>
+      </div>
+      <a href="#" class="see-all">SEMUA REVIEW</a>
+    </div>
+    <div id="reviewList">
+      <div class="review-empty">Memuat review...</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="eyebrow">KAKOGAMES.ID · EST. 2025</div>
+  <div class="cta-title">Bingung pilih handheld yang cocok?</div>
+  <p class="cta-desc">Chat langsung dengan tim Kakogames via WhatsApp. Kami bantu rekomendasi sesuai budget dan game favorit kamu.</p>
+  <a href="#" class="btn-wa">Hubungi Kami di WhatsApp</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <div class="logo-mark">KG</div>
+        kakogames
+      </div>
+      <p class="footer-desc">Destinasi utama kolektor dan pemain retro gaming di Indonesia. Kualitas terjamin, garansi resmi, komunitas aktif.</p>
+      <div class="ship-row">
+        <span class="ship-label">KIRIM VIA:</span>
+        <span class="ship-tag">JNE</span>
+        <span class="ship-tag">J&amp;T</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>MENU</h4>
+      <a href="#produk">Produk</a>
+      <a href="#review">Review</a>
+      <a href="#konten">Konten Terbaru</a>
+    </div>
+    <div class="footer-col">
+      <h4>BANTUAN</h4>
+      <a href="#">Cara Order</a>
+      <a href="#">Pembayaran Transfer</a>
+      <a href="#">Garansi Produk</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kakogames.id — Untuk para retro gamers.</span>
+    <span>Made with Kako Games, Indonesia</span>
+  </div>
+</footer>
+
+<a href="#" class="wa-float">💬 Hubungi Kami</a>
+
+<script>
+  // If this HTML is deployed separately from the backend (e.g. this file on
+  // Netlify, the API on Railway/Render), set the full backend URL here.
+  // Leave empty ('') when the backend serves this same file (relative paths work).
+  const API_BASE = ''; // e.g. 'https://kakogames-cms.up.railway.app'
+
+  const fmtPrice = (n) => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+  const escapeHtml = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  };
+
+  async function loadProducts() {
+    const grid = document.getElementById('productGrid');
+    try {
+      const res = await fetch(API_BASE + '/api/public/products');
+      const { products } = await res.json();
+      if (!products || !products.length) {
+        grid.innerHTML = '<p class="loading-text">Belum ada produk yang dipublikasikan.</p>';
+        return;
+      }
+      grid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-media">
+            ${p.badge ? `<span class="badge">${escapeHtml(p.badge)}</span>` : ''}
+            <img src="${escapeHtml(p.image_url || 'https://images.unsplash.com/photo-1606318801954-d46d46d3360a?auto=format&fit=crop&w=600&q=80')}" alt="${escapeHtml(p.name)}">
+          </div>
+          <div class="product-body">
+            <div class="product-name">${escapeHtml(p.name)}</div>
+            <div class="price-row">
+              <div>
+                ${p.discount_price ? `<span class="price-old">${fmtPrice(p.price)}</span><span class="price-new">${fmtPrice(p.discount_price)}</span>` : `<span class="price-new">${fmtPrice(p.price)}</span>`}
+              </div>
+              <button class="btn-beli">Beli</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    } catch (err) {
+      grid.innerHTML = '<p class="loading-text">Gagal memuat produk. Coba muat ulang halaman.</p>';
+    }
+  }
+
+  async function loadContent() {
+    const grid = document.getElementById('igGrid');
+    try {
+      const res = await fetch(API_BASE + '/api/public/content');
+      const { posts } = await res.json();
+      if (!posts || !posts.length) {
+        grid.innerHTML = '<p class="loading-text">Belum ada konten yang dipublikasikan.</p>';
+        return;
+      }
+      grid.innerHTML = posts.map(p => `
+        <div class="ig-card">
+          <img src="${escapeHtml(p.image_url || 'https://images.unsplash.com/photo-1580327344181-c1163234e5a0?auto=format&fit=crop&w=500&q=80')}" alt="${escapeHtml(p.title)}">
+          <div class="ig-overlay">
+            ${p.year_tag ? `<div class="ig-year">${escapeHtml(p.year_tag)}</div>` : ''}
+            <div class="ig-title">${escapeHtml(p.title)}</div>
+            ${p.description ? `<p class="ig-desc">${escapeHtml(p.description)}</p>` : ''}
+            ${p.tags && p.tags.length ? `<div class="tag-row">${p.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    } catch (err) {
+      grid.innerHTML = '<p class="loading-text">Gagal memuat konten. Coba muat ulang halaman.</p>';
+    }
+  }
+
+  async function loadReviews() {
+    const list = document.getElementById('reviewList');
+    try {
+      const res = await fetch(API_BASE + '/api/public/reviews');
+      const { reviews } = await res.json();
+      if (!reviews || !reviews.length) {
+        list.innerHTML = '<div class="review-empty">Belum ada review.</div>';
+        return;
+      }
+      list.innerHTML = reviews.map(r => `
+        <div class="review-card">
+          <div class="review-top">
+            <span class="review-name">${escapeHtml(r.reviewer_name)}</span>
+            <span class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+            ${r.product_name ? `<span class="review-product">${escapeHtml(r.product_name)}</span>` : ''}
+          </div>
+          ${r.review_text ? `<p class="review-text">${escapeHtml(r.review_text)}</p>` : ''}
+        </div>
+      `).join('');
+    } catch (err) {
+      list.innerHTML = '<div class="review-empty">Gagal memuat review.</div>';
+    }
+  }
+
+  loadProducts();
+  loadContent();
+  loadReviews();
+</script>
+
+</body>
+</html>
