@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Kakogames CMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/dashboard.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="logo"><div class="logo-mark">KG</div>kako<span>games</span></div>
+      <div class="eyebrow">CMS ADMIN</div>
+      <nav class="nav">
+        <button class="nav-item active" data-tab="products">📦 Produk</button>
+        <button class="nav-item" data-tab="content">🎬 Konten</button>
+        <button class="nav-item" data-tab="reviews">⭐ Review</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-name" id="adminName">Memuat...</div>
+        <button class="btn-logout" id="logoutBtn">Keluar</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- PRODUCTS TAB -->
+      <section class="tab-panel" id="tab-products">
+        <div class="panel-head">
+          <div>
+            <h1>Produk</h1>
+            <p>Kelola katalog handheld, harga, stok, dan SEO.</p>
+          </div>
+          <button class="btn-primary" id="addProductBtn">+ Tambah Produk</button>
+        </div>
+        <div class="toolbar">
+          <input type="text" id="productSearch" placeholder="Cari produk...">
+          <select id="productStatusFilter">
+            <option value="">Semua status</option>
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table id="productsTable">
+            <thead><tr>
+              <th>Produk</th><th>Brand</th><th>Harga</th><th>Stok</th><th>Status</th><th></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="productsEmpty" style="display:none;">Belum ada produk. Tambahkan produk pertamamu.</div>
+      </section>
+
+      <!-- CONTENT TAB -->
+      <section class="tab-panel" id="tab-content" style="display:none;">
+        <div class="panel-head">
+          <div>
+            <h1>Konten</h1>
+            <p>Kelola postingan gaya Instagram: review, unboxing, tips.</p>
+          </div>
+          <button class="btn-primary" id="addContentBtn">+ Tambah Konten</button>
+        </div>
+        <div class="toolbar">
+          <input type="text" id="contentSearch" placeholder="Cari konten...">
+        </div>
+        <div class="table-wrap">
+          <table id="contentTable">
+            <thead><tr>
+              <th>Judul</th><th>Tag</th><th>Status</th><th></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="contentEmpty" style="display:none;">Belum ada konten.</div>
+      </section>
+
+      <!-- REVIEWS TAB -->
+      <section class="tab-panel" id="tab-reviews" style="display:none;">
+        <div class="panel-head">
+          <div>
+            <h1>Review</h1>
+            <p>Moderasi ulasan pelanggan sebelum tampil di homepage.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="reviewsTable">
+            <thead><tr>
+              <th>Reviewer</th><th>Produk</th><th>Rating</th><th>Ulasan</th><th>Status</th><th></th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="reviewsEmpty" style="display:none;">Belum ada review.</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="productModalTitle">Tambah Produk</h2>
+        <button class="modal-close" data-close="productModal">✕</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="p_id">
+        <div class="form-grid">
+          <div class="field"><label>Nama Produk *</label><input type="text" id="p_name" required></div>
+          <div class="field"><label>Slug (URL)</label><input type="text" id="p_slug" placeholder="otomatis dari nama"></div>
+          <div class="field"><label>Brand</label><input type="text" id="p_brand" placeholder="Anbernic, Miyoo..."></div>
+          <div class="field"><label>Badge</label><input type="text" id="p_badge" placeholder="mis. Anbernic"></div>
+          <div class="field"><label>Harga (Rp) *</label><input type="number" id="p_price" required></div>
+          <div class="field"><label>Harga Coret (opsional)</label><input type="number" id="p_discount_price"></div>
+          <div class="field"><label>Stok</label><input type="number" id="p_stock" value="0"></div>
+          <div class="field"><label>Status</label>
+            <select id="p_status"><option value="draft">Draft</option><option value="published">Published</option></select>
+          </div>
+          <div class="field span-2"><label>URL Gambar</label><input type="text" id="p_image_url" placeholder="https://..."></div>
+          <div class="field span-2"><label>Deskripsi</label><textarea id="p_description" rows="3"></textarea></div>
+        </div>
+        <div class="seo-block">
+          <div class="seo-title">🔍 SEO</div>
+          <div class="form-grid">
+            <div class="field span-2"><label>Meta Title</label><input type="text" id="p_meta_title"></div>
+            <div class="field span-2"><label>Meta Description</label><textarea id="p_meta_description" rows="2"></textarea></div>
+            <div class="field"><label>OG Image URL</label><input type="text" id="p_og_image_url"></div>
+            <div class="field"><label>Canonical URL</label><input type="text" id="p_canonical_url"></div>
+          </div>
+        </div>
+        <div class="error-box" id="productFormError"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" data-close="productModal">Batal</button>
+          <button type="submit" class="btn-primary">Simpan Produk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTENT MODAL -->
+  <div class="modal-overlay" id="contentModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="contentModalTitle">Tambah Konten</h2>
+        <button class="modal-close" data-close="contentModal">✕</button>
+      </div>
+      <form id="contentForm">
+        <input type="hidden" id="c_id">
+        <div class="form-grid">
+          <div class="field span-2"><label>Judul *</label><input type="text" id="c_title" required></div>
+          <div class="field"><label>Slug (URL)</label><input type="text" id="c_slug" placeholder="otomatis dari judul"></div>
+          <div class="field"><label>Tahun / Label</label><input type="text" id="c_year_tag" placeholder="2025 · UNBOXING"></div>
+          <div class="field"><label>Status</label>
+            <select id="c_status"><option value="draft">Draft</option><option value="published">Published</option></select>
+          </div>
+          <div class="field"><label>Tags (pisahkan koma)</label><input type="text" id="c_tags" placeholder="Unboxing, Review"></div>
+          <div class="field span-2"><label>URL Gambar</label><input type="text" id="c_image_url"></div>
+          <div class="field span-2"><label>Deskripsi</label><textarea id="c_description" rows="3"></textarea></div>
+        </div>
+        <div class="seo-block">
+          <div class="seo-title">🔍 SEO</div>
+          <div class="form-grid">
+            <div class="field span-2"><label>Meta Title</label><input type="text" id="c_meta_title"></div>
+            <div class="field span-2"><label>Meta Description</label><textarea id="c_meta_description" rows="2"></textarea></div>
+            <div class="field"><label>OG Image URL</label><input type="text" id="c_og_image_url"></div>
+            <div class="field"><label>Canonical URL</label><input type="text" id="c_canonical_url"></div>
+          </div>
+        </div>
+        <div class="error-box" id="contentFormError"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" data-close="contentModal">Batal</button>
+          <button type="submit" class="btn-primary">Simpan Konten</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin/dashboard.js"></script>
+</body>
+</html>
